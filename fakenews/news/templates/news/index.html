@@ -104,13 +104,22 @@
               <form method="post">
                 <div class="row align-items-center">
                   <div class="col-lg-12 col-xl-10 no-sm-border border-right">
-                    <input type="text" class="form-control" placeholder="URL Search">
+                     <!--
+			 <input type="text" class="form-control" placeholder="">
+			-->
+			{% csrf_token %}
+			<table>
+				{{form}}
+			</table>
+	
                   </div>
+			<!--
                   <div class="col-lg-12 col-xl-10 no-sm-border border-right">
                       <input type="text" class="form-control" placeholder="News Title">   
                   </div>
+			-->
                   <div class="col-lg-12 col-xl-2 ml-auto text-right">
-                    <input type="submit" class="btn text-white btn-primary" value="Search">
+                      <input type="submit" action="/result" class="btn text-white btn-primary" value="Search">
                   </div>
                   
                 </div> <!-- class="row align-items-center" -->
