@@ -61,15 +61,20 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="/index"><span>Home</span></a></li>
-                <li><a href="/login"><span>Login</span></a></li>
+                <li><a href="/index"><span>Home</span></a></li>
+                {% if user.is_authenticated %}
+                <li><a href="#"><span>{{ user.username }}님</span></a></li>
+                <li><a href="{%url 'logout'%}"><span>로그아웃</span></a></li>
+                {% else %}
+                <li><a href="/logins"><span>Login</span></a></li>
                 <li><a href="/signup"><span>Sign Up</span></a></li>
-                <li class="has-children">
+                {% endif%}
+                <li class="has-children active">
                   <a href="/record"><span>Search Record</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a href="/record">Search Record</a></li>
                     <li><a href="/searchboard">검색 기록</a></li>
-                    <li><a href="#">언론사</a></li>
+                    <li><a href="/result">검색 결과</a></li>
                   </ul>
                 </li>
               </ul>
@@ -136,23 +141,26 @@
                     <tr>
                       <th>번호</th>
                       <th>URL</th>
-                      <th>기사 제목</th>
-                      <th>언론사</th>
                       <th>날짜</th>
                       <th>Fake News</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <c:forEach> <!-- 반복 -->
-                      <tr>
-                        <td>1</td>
-                        <td>www.naver.com</td>
-                        <td>캡디 발표까지 앞으로 일주일</td>
-                        <td>머전머일보</td>
-                        <td>2019/11/26</td>
-                        <td>YES</td>
-                      </tr>
-                    </c:forEach>
+                  {% if searchList %}
+                  {% for seList in searchList %}
+                  <tr>
+                   <td>{{ seList.reIndex }}</td>
+                   <td>{{ seList.searchUrl }}</td>
+                   <td>{{ seList.newsDate }}</td>
+                   <td>{{ seList.truth }}</td>
+                 </tr>
+                 {% endfor %}
+
+                 {% else %}
+                 <tr>
+                  <td colspan=6>No Data.</td>
+                </tr>
+                {% endif %}
                   </tbody>
                 </table>
               </div>
@@ -228,4 +236,3 @@
 </body>
 
 </html>
-

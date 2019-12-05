@@ -58,14 +58,15 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="/index"><span>Home</span></a></li>
-                <li><a href="/logins"><span>Login</span></a></li>
-                <li class="active"><a href="/signup"><span>Sign Up</span></a></li>
+                <li class="active"><a href="/index"><span>Home</span></a></li>
+                <li><a href="/login"><span>Login</span></a></li>
+                <li><a href="/signup"><span>Sign Up</span></a></li>
                 <li class="has-children">
                   <a href="/record"><span>Search Record</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a href="/record">Search Record</a></li>
                     <li><a href="/searchboard">검색 기록</a></li>
+                    <li><a href="#">언론사</a></li>
                   </ul>
                 </li>
               </ul>
@@ -104,43 +105,42 @@
   <div class="site-section bg-light">
     <div class="container">
       <div class="row">
-
         <div class="col-md-7 mb-10">
-	<form method="POST" action="{%url 'signup'%}" class="p-5 bg-light" style="margin-top: -10px;">
-            {% csrf_token %}
+
+          <form action="#" class="p-5 bg-light" style="margin-top: -10px;">
 
             <div class="row form-group">
               <div class="col-md-5">
                 <label class="text-black" for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                <input type="text" id="fname" class="form-control">
               </div>
             </div>
 
             <div class="row form-group">
               <div class="col-md-10">
                 <label class="text-black" for="email">Email</label> 
-                <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                <input type="email" id="email" class="form-control">
               </div>
             </div>
 
             <div class="row form-group">
               <div class="col-md-10">
-                <label class="text-black" for="userId">ID</label> 
-                <input type="text" name="userId" id="userId" class="form-control" placeholder="ID">
+                <label class="text-black" for="id">ID</label> 
+                <input type="text" id="id" class="form-control">
               </div>
             </div>
 
             <div class="row form-group">
               <div class="col-md-10">
-                <label class="text-black" for="password">Password</label> 
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                <label class="text-black" for="pass1">Password</label> 
+                <input type="password" id="pass1" class="form-control">
               </div>
             </div>
 
             <div class="row form-group">
               <div class="col-md-10">
-                <label class="text-black" for="password2">Re-Password</label> 
-                <input type="password" name="password2" id="password2" class="form-control" placeholder="Re-Password">
+                <label class="text-black" for="pass2">Re-type Password</label> 
+                <input type="password" id="pass2" class="form-control">
               </div>
             </div>
 
@@ -150,33 +150,28 @@
               </div>
             </div>
 
-
           </form>
-	</div>
+        </div>
 
         <!-- -------가운데 오른쪽 박스------- -->
 
         <div class="col-md-5">
 
           <div class="p-4 mb-3 bg-light">
-            <p class="mb-0 font-weight-bold">EX) NAME</p>
-            <p class="mb-4">An ChungSol</p>
+            <p class="mb-0 font-weight-bold">Address</p>
+            <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
 
-            <p class="mb-0 font-weight-bold">EX) Email</p>
-            <p class="mb-4">DaeJeonUniv@naver.com</p>
+            <p class="mb-0 font-weight-bold">Phone</p>
+            <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
 
-            <p class="mb-0 font-weight-bold">EX) ID</p>
-            <p class="mb-4">DaejeonUniv</p>
-
-            <p class="mb-0 font-weight-bold">EX) Password</p>
-            <p class="mb-0">1q2w3e4r!@</p>
+            <p class="mb-0 font-weight-bold">Email Address</p>
+            <p class="mb-0"><a href="#">youremail@domain.com</a></p>
 
           </div>
 
           <div class="p-4 mb-3 bg-light">
             <h3 class="h5 text-black mb-3">More Info</h3>
-            <p>You can search the news with or without an ID.
-            Thank you for visiting this site</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ad iure porro mollitia architecto hic consequuntur. Distinctio nisi perferendis dolore, ipsa consectetur? Fugiat quaerat eos qui, libero neque sed nulla.</p>
           </div>
 
         </div>

@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -20,10 +20,10 @@ class Post(models.Model):
         return self.title
 
 class Press(models.Model):
-    pressName = models.CharField(max_length=50, primary_key=True)
+    pressId = models.AutoField(primary_key=True)
+    pressName = models.CharField(max_length=50)
     pressUrl = models.CharField(max_length=200)
-    urlParameter = models.CharField(max_length=200)
-    
+
 class Users(models.Model):
     userId = models.CharField(max_length=20, primary_key=True)
     password = models.CharField(max_length=50)
@@ -31,22 +31,18 @@ class Users(models.Model):
     name = models.CharField(max_length=50)
 
 class Record(models.Model):
-    reIndex = models.IntegerField(primary_key=True)
+    reIndex = models.AutoField(primary_key=True)
     searchUrl = models.CharField(max_length=200)
     truth = models.BooleanField()
-    newsDate = models.DateField()
+    newsDate = models.CharField(max_length=20)
     content = models.TextField()
-    pressName = models.ForeignKey(Press, on_delete = models.CASCADE, db_column='pressName')
-    userId = models.ForeignKey(Users, on_delete=models.SET_DEFAULT, default='Unknown', db_column='userId')
-   
-
 
 class FakeNews(models.Model):
-    fnIndex = models.OneToOneField(Record, on_delete=models.CASCADE)
-    fnGrammar = models.CharField(max_length=300)
-    photoName = models.CharField(max_length=100)
+    grammarCount = models.IntegerField()
+    urlError = models.CharField(max_length=200)
+    photoError = models.CharField(max_length=100)
+    dateError = models.CharField(max_length=100)
     score = models.IntegerField()
-
 
 class Grammar(models.Model):
     grammar = models.CharField(max_length=50, primary_key=True)

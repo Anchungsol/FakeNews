@@ -54,7 +54,7 @@
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="/index"><span>Home</span></a></li>
-                <li><a href="/login"><span>Login</span></a></li>
+                <li><a href="/logins"><span>Login</span></a></li>
                 <li><a href="/signup"><span>Sign Up</span></a></li>
                 <li class="has-children">
                   <a href="/record"><span>Search Record</span></a>
@@ -102,16 +102,20 @@
       <div class="row align-items-center justify-content-center">
 
         <div class="col-md-7">
-            <form method="post" style="margin-top: 30px;">
+              <form method="POST" style="margin-top: 30px;">
+              {% csrf_token %}
               <div class="row align-items-center">
+
                 <div class="col-lg-12 col-xl-10">
-                  <label class="text-black" for="id">ID</label> 
-                  <input type="email" id="id" class="form-control">
+                  <label class="text-black" for="userId">ID</label> 
+                  {{ form.userId }}
                 </div>
+
                 <div class="col-lg-12 col-xl-10">
-                  <label class="text-black" for="pass1">Password</label> 
-                  <input type="password" id="pass1" class="form-control">  
+                  <label class="text-black" for="password">Password</label> 
+                  {{ form.password }} 
                 </div>
+
                 <div class="col-lg-8 col-xl-2 ml-auto text-right">
                   <input type="submit" class="btn text-white btn-primary btn-lg" value="Login">
                 </div>

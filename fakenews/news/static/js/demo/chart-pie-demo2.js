@@ -7,10 +7,10 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["중앙일보", "조선일보", "국민일보", "네이버", "다음", "한겨례", "한국일보", "서울신문", "아시아 투데이"],
+    labels: ["URL변조 의심", "이미지-언론사", "기사 날짜-사진 날짜", "문법 오류 개수"],
     datasets: [{
-      data: [30, 25, 20, 15, 10, 5, 0, 0, 0],
-      backgroundColor: ['#FF0000', '#FF5E00', '#FFE400', '#1DDB16', '#3162C7', '#00003F', '#8041D9', '#A6A6A6', '#353535'],
+      data: [1, 2, 3, 5],
+      backgroundColor: ['#FF0000', '#FF5E00', '#FFE400', '#1DDB16'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
@@ -32,4 +32,5 @@ var myPieChart = new Chart(ctx, {
     cutoutPercentage: 75,
   },
 });
+
 

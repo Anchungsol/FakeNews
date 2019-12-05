@@ -55,7 +55,7 @@
       <div class="row align-items-center">
 
         <div class="col-11 col-xl-2">
-          <h1 class="mb-0 site-logo"><a href="home.html" class="text-white h2 mb-0">Fake News</a></h1>
+          <h1 class="mb-0 site-logo"><a href="/index" class="text-white h2 mb-0">Fake News</a></h1>
         </div>
 
         <div class="col-10 col-md-10 d-none d-xl-block">
@@ -63,14 +63,18 @@
 
             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
               <li class="active"><a href="/index"><span>Home</span></a></li>
-              <li><a href="/login"><span>Login</span></a></li>
+              {% if user.is_authenticated %}
+              <li><a href="#"><span>{{ user.username }}님</span></a></li>
+              <li><a href="{%url 'logout'%}"><span>로그아웃</span></a></li>
+              {% else %}
+              <li><a href="/logins"><span>Login</span></a></li>
               <li><a href="/signup"><span>Sign Up</span></a></li>
+              {% endif%}
               <li class="has-children">
                 <a href="/record"><span>Search Record</span></a>
                 <ul class="dropdown arrow-top">
                   <li><a href="/record">Search Record</a></li>
                   <li><a href="/searchboard">검색 기록</a></li>
-                  <li><a href="#">언론사</a></li>
                 </ul>
               </li>
             </ul>
@@ -96,7 +100,7 @@
       <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
         <div class="row justify-content-center">
           <div class="col-md-8 text-center">
-            <h1>News 오류 검사 결과</h1>
+            <h1>News 검사 결과</h1>
           </div>
         </div>
       </div>
@@ -140,33 +144,40 @@
                 <thead>
                   <tr>
                     <th>번호</th>
-                    <th colspan="4">오류 내역</th>
+                    <th>검사 조건</th>
+                    <th>결과</th>
                   </tr>
                 </thead>
-
                 <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>URL 변조</td>
-                    <td>www.naver.com</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>거짓 날짜</td>
-                    <td>2019/11/29</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>문법적 오류 개수</td>
-                    <td>5개</td>
-                  </tr>
-                  <c:forEach> <!-- 반복 -->
-                  <tr>
-                    <td>4</td>
-                    <td>점수</td>
-                    <td>10점</td>
-                  </tr>
-                </c:forEach>
+                 <tr>
+                  <td>1</td>
+                  <td>URL 변조 의심</td>
+                  <td>{{ resultList.urlError }}</td>
+                </tr>
+
+                <tr>
+                  <td>2</td>
+                  <td>이미지 이름 - 언론사 URL 비교</td>
+                  <td>{{ resultList.photoError }}</td>
+                </tr>
+
+                <tr>
+                  <td>3</td>
+                  <td>기사 입력 날짜 - 사진 날짜 비교</td>
+                  <td>{{ resultList.dateError }}</td>
+                </tr>
+
+                <tr>
+                  <td>4</td>
+                  <td>문법적 오류 개수</td>
+                  <td>{{ resultList.grammarCount }}</td>
+                </tr>
+
+                <tr>
+                  <td>5</td>
+                  <td>점수</td>
+                  <td>{{ resultList.score }}</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -180,7 +191,11 @@
     <div class="col-xl-7 col-lg-5" >
       <div class="card shadow mb-4">
         <div class="card-header py-3">
-          <h6 class="m-0 font-weight-bold text-primary">ㅇㅇ의 오류 검출 빈도</h6>
+          {% if user.is_authenticated %}
+          <h6 class="m-0 font-weight-bold text-primary">{{ user.username }}의 오류 검출 빈도</h6>
+          {% else %}
+          <h6 class="m-0 font-weight-bold text-primary">사용자의 오류 검출 빈도</h6>
+          {% endif%}
         </div>
         <div class="card-body">
           <div class="chart-bar">
@@ -205,13 +220,16 @@
           </div>
           <div class="mt-4 text-center small">
             <span class="mr-2">
-              <i class="fas fa-circle text-primary"></i> URL 변조
+              <i class="fas fa-circle text-danger"></i> URL 변조 의심
             </span>
             <span class="mr-2">
-              <i class="fas fa-circle text-success"></i> 거짓 날짜
+              <i class="fas fa-circle text-orange"></i> 이미지-언론사 비교
             </span>
             <span class="mr-2">
-              <i class="fas fa-circle text-info"></i> 문법 오류
+              <i class="fas fa-circle text-yellow"></i> 기사날짜-사진날짜 비교
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-success"></i> 문법 오류 개수
             </span>
           </div>
         </div>
@@ -262,8 +280,8 @@
 <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
 <script src='{% static "js/sb-admin-2.min.js" %}'></script>
 <script src='{% static "vendor/chart.js/Chart.min.js" %}'></script>
-<script src='{% static "js/chart-pie-demo.js" %}'></script>
-<script src='{% static "js/chart-bar-demo.js" %}'></script>
+<script src='{% static "js/demo/chart-pie-demo2.js" %}'></script>
+<script src='{% static "js/demo/chart-bar-demo.js" %}'></script>
 
 
 <script src='{% static "js/jquery-migrate-3.0.1.min.js" %}'></script>
@@ -278,4 +296,3 @@
 </body>
 
 </html>
-

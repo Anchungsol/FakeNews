@@ -38,7 +38,7 @@
 
 <body id="page-top">
 
-   <header class="site-navbar" role="banner">
+ <header class="site-navbar" role="banner">
   <div class="site-wrap">
 
     <div class="site-mobile-menu">
@@ -52,282 +52,309 @@
     
 
 
-      <div class="container">
-        <div class="row align-items-center">
-
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="/index" class="text-white h2 mb-0">Fake News</a></h1>
-          </div>
-
-          <div class="col-10 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class="active"><a href="/index"><span>Home</span></a></li>
-                <li><a href="/login"><span>Login</span></a></li>
-                <li><a href="/signup"><span>Sign Up</span></a></li>
-                <li class="has-children">
-                  <a href="/record"><span>Search Record</span></a>
-                  <ul class="dropdown arrow-top">
-                    <li><a href="/record">Search Record</a></li>
-                    <li><a href="/searchboard">검색 기록</a></li>
-                    <li><a href="#">언론사</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div> <!-- class="col-12 col-md-10 d-none d-xl-block" -->
-
-
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-
-        </div>
-
-      </div> <!-- class="container" -->
-    </div> <!-- class="site-wrap" -->
-
-  </header>
-
-  <!-- ---------홈페이지 맨 위 상단------------ --> 
-
-  <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(images/newsimage.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
     <div class="container">
-      <div class="row align-items-center justify-content-center text-center">
+      <div class="row align-items-center">
 
-        <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
-          <div class="row justify-content-center">
-            <div class="col-md-5 text-center">
-              <h1>Search Record</h1>
-            </div>
-          </div>
+        <div class="col-11 col-xl-2">
+          <h1 class="mb-0 site-logo"><a href="/index" class="text-white h2 mb-0">Fake News</a></h1>
         </div>
 
+        <div class="col-10 col-md-10 d-none d-xl-block">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+
+            <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+              <li><a href="/index"><span>Home</span></a></li>
+              {% if user.is_authenticated %}
+              <li><a href="#"><span>{{ user.username }}님</span></a></li>
+              <li><a href="{%url 'logout'%}"><span>로그아웃</span></a></li>
+              {% else %}
+              <li><a href="/logins"><span>Login</span></a></li>
+              <li><a href="/signup"><span>Sign Up</span></a></li>
+              {% endif%}
+              <li class="has-children active">
+                <a href="/record"><span>Search Record</span></a>
+                <ul class="dropdown arrow-top">
+                  <li><a href="/record">Search Record</a></li>
+                  <li><a href="/searchboard">검색 기록</a></li>
+		  <li><a href="/result">검색 결과</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div> <!-- class="col-12 col-md-10 d-none d-xl-block" -->
+
+
+        <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
       </div>
+
     </div> <!-- class="container" -->
-  </div>  <!-- url(images/newsimage.jpg) -->
+  </div> <!-- class="site-wrap" -->
 
+</header>
 
+<!-- ---------홈페이지 맨 위 상단------------ --> 
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image:url({% static 'images/newsimage.jpg'%});" data-aos="fade" data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row align-items-center justify-content-center text-center">
 
-    <!-- ----------------------가운데  위 보기 4개-----------------------   -->
-
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
-
-          <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-5">
-          </div>
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">이용하는 사용자 수</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">40,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-chart-bar fa-3x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- Earnings (Monthly) Card Example -->
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">현재까지 news 검색 횟수</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-chart-area fa-3x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- Earnings (Monthly) Card Example -->
-
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-4 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">현재까지 검출된 fake news 개수</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-chart-line fa-3x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div><!-- Earnings (Monthly) Card Example -->
-
-          </div> <!-- class="row" -->
-
-
-         <!-- -----------------가운데 메인 왼쪽 그래프------------------   -->
-
-
-          <!-- Content Row -->
-          <div class="row">
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7" >
-              <div class="card shadow mb-4" >
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary"><a href="searchboard.html">검색 기록</a></h6>
-                </div>
-
-                <!-- Card Body -->
-            <div class="card-body" style="overflow:auto; height:360px">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>번호</th>
-                      <th>URL</th>
-                      <th>기사 제목</th>
-                      <th>언론사</th>
-                      <th>날짜</th>
-                      <th>Fake News</th>
-                    </tr>
-                  </thead>
-                  
-                  <tbody>
-                    <c:forEach> <!-- 반복 -->
-                      <tr>
-                        <td>1</td>
-                        <td>www.naver.com</td>
-                        <td>캡디 발표까지 앞으로 일주일</td>
-                        <td>머전머일보</td>
-                        <td>2019/11/26</td>
-                        <td>YES</td>
-                      </tr>
-                    </c:forEach>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+      <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
+        <div class="row justify-content-center">
+          <div class="col-md-5 text-center">
+            <h1>Search Record</h1>
           </div>
         </div>
-
-          <!-- -----------------가운데 메인 오른쪽 원------------------   -->
-            <!-- Pie Chart -->
-            <div class="col-xl-4 col-lg-5">
-              <div class="card shadow mb-4">
-                <!-- Card Header - Dropdown -->
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">검색된 언론사</h6>
-                </div>
-
-                <!-- Card Body -->
-                <div class="card-body">
-                  <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                  </div>
-                  <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
-                    </span>
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
-                    </span>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-        <!-- ------------------------------------------------- -->
-        </div> <!-- class="container-fluid" -->
-        <!-- /.container-fluid -->
-
       </div>
-      <!-- End of Main Content -->
-
-
-      <!-- Footer -->
-      <footer class="site-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <div class="col-12 text-md-center text-left">
-          <p>
-            &copy; 2019 <strong class="text-black">FakeNews</strong> Search & Verification <br> Design by FakeNews Team
-          </p>
-        </div>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
 
     </div>
-    <!-- End of Content Wrapper -->
+  </div> <!-- class="container" -->
+</div>  <!-- url(images/newsimage.jpg) -->
 
+
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+  <!-- ----------------------가운데  위 보기 4개-----------------------   -->
+
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-5">
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary mb-1">사이트에 가입한 사용자 수</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{userCount}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-chart-bar fa-3x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- Earnings (Monthly) Card Example -->
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">현재까지 news 검색 횟수</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{newsCount}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-chart-area fa-3x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- Earnings (Monthly) Card Example -->
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">현재까지 검출된 fake news 개수</div>
+                <div class="row no-gutters align-items-center">
+                  <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ fakeCount }}</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-chart-line fa-3x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- Earnings (Monthly) Card Example -->
+
+    </div> <!-- class="row" -->
+
+
+    <!-- -----------------가운데 메인 왼쪽 그래프------------------   -->
+
+
+    <!-- Content Row -->
+    <div class="row">
+
+      <!-- Area Chart -->
+      <div class="col-xl-8 col-lg-7" >
+        <div class="card shadow mb-4" >
+          <!-- Card Header - Dropdown -->
+          <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary"><a href="searchboard.html">검색 기록</a></h6>
+          </div>
+
+          <!-- Card Body -->
+          <div class="card-body" style="overflow:auto; height:360px">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>번호</th>
+                    <th>URL</th>
+                    <th>날짜</th>
+                    <th>Fake News</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                  {% if recordList %}
+                  {% for reList in recordList %}
+                  <tr>
+                   <td>{{ reList.reIndex }}</td>
+                   <td>{{ reList.searchUrl }}</td>
+                   <td>{{ reList.newsDate }}</td>
+                   <td>{{ reList.truth }}</td>
+                 </tr>
+                 {% endfor %}
+
+                 {% else %}
+                 <tr>
+                  <td colspan=6>No Data.</td>
+                </tr>
+                {% endif %}
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- -----------------가운데 메인 오른쪽 원------------------   -->
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5">
+      <div class="card shadow mb-4">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 class="m-0 font-weight-bold text-primary">검색된 언론사</h6>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body">
+          <div class="chart-pie pt-4 pb-2">
+            <canvas id="myPieChart"></canvas>
+          </div>
+          <div class="mt-4 text-center small">
+            <span class="mr-2">
+              <i class="fas fa-circle text-danger"></i> 중앙일보
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-orange"></i> 조선일보
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-yellow"></i> 국민일보
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-success"></i> 네이버
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-primary"></i> 다음
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-navy"></i> 한겨례
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-purple"></i> 한국일보
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-muted"></i> 서울신문
+            </span>
+            <span class="mr-2">
+              <i class="fas fa-circle text-dark"></i> 아시아 투데이
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-  <!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+  <!-- ------------------------------------------------- -->
+</div> <!-- class="container-fluid" -->
+<!-- /.container-fluid -->
+
+</div>
+<!-- End of Main Content -->
+
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <div class="col-12 text-md-center text-left">
+        <p>
+          &copy; 2019 <strong class="text-black">FakeNews</strong> Search & Verification <br> Design by FakeNews Team
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- End of Footer -->
+
+</div>
+<!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
 
 
 
-  <!-- Bootstrap core JavaScript-->
-  <script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
-  <script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
+<!-- Bootstrap core JavaScript-->
+<script src='{% static "vendor/jquery/jquery.min.js" %}'></script>
+<script src='{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}'></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
+<!-- Core plugin JavaScript-->
+<script src='{% static "vendor/jquery-easing/jquery.easing.min.js" %}'></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src='{% static "js/sb-admin-2.min.js" %}'></script>
+<!-- Custom scripts for all pages-->
+<script src='{% static "js/sb-admin-2.min.js" %}'></script>
 
-  <!-- Page level plugins -->
-  <script src='{% static "vendor/chart.js/Chart.min.js" %}'></script>
+<!-- Page level plugins -->
+<script src='{% static "vendor/chart.js/Chart.min.js" %}'></script>
 
-  <!-- Page level custom scripts -->
-  <script src='{% static "js/demo/chart-area-demo.js" %}'></script>
-  <script src='{% static "js/demo/chart-pie-demo.js" %}'></script>
+<!-- Page level custom scripts -->
+<script src='{% static "js/demo/chart-area-demo.js" %}'></script>
+<script src='{% static "js/demo/chart-pie-demo.js" %}'></script>
 
-  <script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
-  <script src='{% static "js/jquery-migrate-3.0.1.min.js" %}'></script>
-  <script src='{% static "js/jquery-ui.js" %}'></script>
-  <script src='{% static "js/popper.min.js" %}'></script>
-  <script src='{% static "js/bootstrap.min.js" %}'></script>
-  <script src='{% static "js/owl.carousel.min.js" %}'></script>
-  <script src='{% static "js/jquery.stellar.min.js" %}'></script>
-  <script src='{% static "js/jquery.countdown.min.js" %}'></script>
-  <script src='{% static "js/jquery.magnific-popup.min.js" %}'></script>
-  <script src='{% static "js/bootstrap-datepicker.min.js" %}'></script>
-  <script src='{% static "js/aos.js" %}'></script>
-  <script src='{% static "js/rangeslider.min.js" %}'></script>
+<script src='{% static "js/jquery-3.3.1.min.js" %}'></script>
+<script src='{% static "js/jquery-migrate-3.0.1.min.js" %}'></script>
+<script src='{% static "js/jquery-ui.js" %}'></script>
+<script src='{% static "js/popper.min.js" %}'></script>
+<script src='{% static "js/bootstrap.min.js" %}'></script>
+<script src='{% static "js/owl.carousel.min.js" %}'></script>
+<script src='{% static "js/jquery.stellar.min.js" %}'></script>
+<script src='{% static "js/jquery.countdown.min.js" %}'></script>
+<script src='{% static "js/jquery.magnific-popup.min.js" %}'></script>
+<script src='{% static "js/bootstrap-datepicker.min.js" %}'></script>
+<script src='{% static "js/aos.js" %}'></script>
+<script src='{% static "js/rangeslider.min.js" %}'></script>
 
-  <script src='{% static "js/main.js" %}'></script>
+<script src='{% static "js/main.js" %}'></script>
 
 
 </body>
 
 </html>
-

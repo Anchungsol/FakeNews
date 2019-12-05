@@ -1,9 +1,3 @@
-/*!
- * Bootstrap v4.1.3 (https://getbootstrap.com/)
- * Copyright 2011-2018 The Bootstrap Authors
- * Copyright 2011-2018 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
 :root {
   --blue: #007bff;
   --indigo: #6610f2;
@@ -7219,6 +7213,18 @@ button.bg-dark:focus {
 .text-white {
   color: #fff !important; }
 
+.text-orange {
+  color: #FF5E00 !important; }
+
+.text-yellow {
+  color: #FFE400 !important; } 
+
+.text-navy {
+  color: #00003F !important; }
+
+.text-purple {
+  color: #8041D9 !important; }
+
 .text-primary {
   color: #7971ea !important; }
 
@@ -7350,3 +7356,4 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
     border-color: #dee2e6; } }
+

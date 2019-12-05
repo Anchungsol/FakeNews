@@ -56,14 +56,23 @@
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li class="active"><a href="/index"><span>Home</span></a></li>
-                <li><a href="/login"><span>Login</span></a></li>
+             
+		{% if user.is_authenticated %}
+                <li><a href="#"><span>{{ user.username }}님</span></a></li>
+		<li><a href="{%url 'logout'%}"><span>로그아웃</span></a></li>
+                {% else %}
+                <li><a href="/logins"><span>Login</span></a></li>
                 <li><a href="/signup"><span>Sign Up</span></a></li>
-                <li class="has-children">
+                {% endif%}
+		<!--
+		<li><a href="/login"><span>Login</span></a></li>
+                <li><a href="/signup"><span>Sign Up</span></a></li>
+                -->
+		<li class="has-children">
                   <a href="/record"><span>Search Record</span></a>
                   <ul class="dropdown arrow-top">
                     <li><a href="/record">Search Record</a></li>
                     <li><a href="/searchboard">검색 기록</a></li>
-                    <li><a href="#">언론사</a></li>
                   </ul>
                 </li>
               </ul>
